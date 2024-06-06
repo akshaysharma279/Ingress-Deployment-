@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: ingname
+spec:   
+  ingressClassName: nginx 
+  rules: 
+  - host: addtask1.devopsinsiders.online
+
+    http: 
+      paths: 
+      - backend: 
+          service: 
+            name: addservice
+            port: 
+              number: 80
+        path: /    
+        pathType: Exact
+          

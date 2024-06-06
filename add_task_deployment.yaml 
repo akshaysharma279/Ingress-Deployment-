@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: addtaskdeploy
+spec: 
+  replicas: 1
+  selector: 
+    matchExpressions: 
+    - key: app
+      operator: In
+      values:
+      - addtask
+
+  strategy: 
+    rollingUpdate:   
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:  
+    metadata: 
+      labels: 
+        app: addtask
+    spec: 
+      containers: 
+      - image: sneha549/docker_images:addtasktodomicroservice
+        name: image
+        ports: 
+        - containerPort: 8000
+    
+     
+
+
